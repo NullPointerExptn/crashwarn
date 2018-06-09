@@ -22,25 +22,37 @@ public class Warner {
 
     public void checkTps() {
         for (Player p : Bukkit.getOnlinePlayers()) {
-            if (Handler.getTps() < 15) {
+            if (!(sent.contains("True"))) {
+                if (Handler.getTps() < 15) {
 
-                if (p.isOp() || p.hasPermission("crashwarn.admin")) {
-                    p.sendMessage(ChatColor.DARK_AQUA + "[CRASHWARN]" + ChatColor.DARK_RED + "SEVERE:" + ChatColor.RED + " Crash Warn! Current server TPS is " + ChatColor.GOLD + Handler.getTps() + ChatColor.RED + "!");
-                    sent.add("True");
+                    if (p.isOp() || p.hasPermission("crashwarn.admin")) {
+                        p.sendMessage(ChatColor.DARK_AQUA + "[CRASHWARN]" + ChatColor.DARK_RED + "SEVERE:" + ChatColor.RED + " Crash Warn! Current server TPS is " + ChatColor.GOLD + Handler.getTps() + ChatColor.RED + "!");
+                        sent.add("True");
+
+
+                        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Core.getPlugin(), new Runnable() {
+
+                            @Override
+                            public void run() {
+                                sent.remove("True");
+                            }
+                        }, 1200);
+                    }
+
                 }
+
 
             }
 
 
-        }
-        if (Handler.getTps() > 15) {
-            if (sent.contains("True")) {
-                sent.remove("True");
-                for (Player p : Bukkit.getOnlinePlayers()) {
+            if (Handler.getTps() > 15) {
+                if (sent.contains("True")) {
+                    sent.remove("True");
                     if (p.isOp()) {
                         p.sendMessage(ChatColor.DARK_AQUA + "[CRASHWARN]" + ChatColor.GRAY + ":" + ChatColor.GREEN + " Server TPS now under control again!");
                     }
                 }
+
             }
         }
     }

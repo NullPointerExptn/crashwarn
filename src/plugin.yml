@@ -1,0 +1,5 @@
+name: CrashWarn
+version: 1.0
+author: DevMinty
+description: A Crash Warning Plugin
+main: me.admin.crashwarn.Core
