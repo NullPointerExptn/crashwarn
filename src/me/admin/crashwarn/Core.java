@@ -12,6 +12,7 @@ public class Core extends JavaPlugin {
 
     private static Plugin plugin;
 
+
     public void onEnable(){
 
         Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.DARK_AQUA + "[CrashWarner] " + ChatColor.GREEN + "by " + ChatColor.GOLD + "DevMinty" + ChatColor.GREEN + " has started!");
